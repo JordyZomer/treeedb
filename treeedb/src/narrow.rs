@@ -28,6 +28,7 @@ impl FactConsumer for NarrowCsvConsumer {
 
     fn field(
         &mut self,
+        _file_id: &str,
         _parent: &Node<'_>,
         _name: &'static str,
         _child: &Node<'_>,
@@ -37,6 +38,7 @@ impl FactConsumer for NarrowCsvConsumer {
 
     fn child(
         &mut self,
+        _file_id: &str,
         _parent: &Node<'_>,
         _index: u32,
         _child: &Node<'_>,
@@ -44,7 +46,7 @@ impl FactConsumer for NarrowCsvConsumer {
         Ok(())
     }
 
-    fn node(&mut self, node: &Node<'_>, _source: &[u8]) -> Result<(), Self::Err> {
+    fn node(&mut self, _file_id: &str, node: &Node<'_>, _source: &[u8]) -> Result<(), Self::Err> {
         let id = node.id();
         self.node_id
             .write_record([&id.to_string(), &id.to_string()])?;

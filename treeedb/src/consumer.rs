@@ -17,12 +17,24 @@ pub trait FactConsumer {
 
     fn field(
         &mut self,
+        file_id: &str,
         parent: &Node<'_>,
         name: &'static str,
         child: &Node<'_>,
     ) -> Result<(), Self::Err>;
 
-    fn child(&mut self, parent: &Node<'_>, index: u32, child: &Node<'_>) -> Result<(), Self::Err>;
+    fn child(
+        &mut self,
+        file_id: &str,
+        parent: &Node<'_>,
+        index: u32,
+        child: &Node<'_>,
+    ) -> Result<(), Self::Err>;
 
-    fn node(&mut self, node: &Node<'_>, source: &[u8]) -> Result<(), Self::Err>;
+    fn node(
+        &mut self,
+        file_id: &str,
+        node: &Node<'_>,
+        source: &[u8],
+    ) -> Result<(), Self::Err>;
 }
